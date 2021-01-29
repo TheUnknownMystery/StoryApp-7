@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
 
     textInputStyle2: {
 
-        height: 200,
+        height: 100,
         width: '80%',
         alignSelf: 'center',
         marginTop: 50,
@@ -126,7 +126,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         fontSize: 30,
         alignSelf: 'center',
-        marginTop: 4
+        marginTop: 10
 
 
     },

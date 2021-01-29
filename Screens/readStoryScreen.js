@@ -3,17 +3,16 @@ import { View, Text, StyleSheet, ScrollView, TextInput, TouchableOpacity } from 
 import Header from '../components/Header'
 import db from '../config.js'
 import firebase from 'firebase'
-//import {} from 'react-native-gesture-handler';
+
 
 export default class ReadStoryScreen extends React.Component {
-
+  
   constructor() {
     super()
 
     this.state = {
 
       SearchedItem: '',
-      UserAuthor: [],
       AllUserInfo: []
     }
   }
@@ -21,47 +20,62 @@ export default class ReadStoryScreen extends React.Component {
   SearchFilterFunction = async (text) => {
 
     var enteredText = text.split("");
-
-    if (enteredText[0].toUpperCase() === 'A') {
-
-
-      const transactions = await db.collection("UserData").where("Title", "==", text).get();
+  
+    if (enteredText[0].toUpperCase() === "A") {
+      
+      
+      const transactions = await db.collection("UserData").where("Title", "==",text).get();
 
       transactions.docs.map((doc) => {
 
         this.setState({
 
-          AllUserInfo: [...this.state.AllTransactions, doc.data()],
-
+          AllUserInfo: [...this.state.AllUserInfo, doc.data()],
 
         })
       })
 
     }
-    else if (enteredText[0].toUpperCase() === 'B') {
-
-
+    else if (enteredText[0].toUpperCase() === "B") {
+      
+       //Checking the value of transaction to map it...
       const transactions = await db.collection("UserData").where("Title", "==", text).get();
       transactions.docs.map((doc) => {
 
         this.setState({
 
-          AllUserInfo: [...this.state.AllTransactions, doc.data()],
-
+          AllUserInfo: [...this.state.AllUserInfo, doc.data()],
 
         })
       })
     }
+
+    else if (enteredText[0].toUpperCase() === "C") {
+      
+      //Checking the value of transaction to map it...
+     const transactions = await db.collection("UserData").where("Title", "==", text).get();
+     transactions.docs.map((doc) => {
+
+       this.setState({
+
+         AllUserInfo: [...this.state.AllUserInfo, doc.data()],
+
+       })
+     })
+   }
+    console.log(this.state.AllTransactions)
   }
 
   componentDidMount = async () => {
 
     const UserQuery = await db.collection('UserData').get()
-    console.log("init")
-    UserQuery.docs.map((doc) => {
-      this.setState({
-        AllUserInfo: [],
 
+    UserQuery.docs.map((doc) => {
+
+      this.setState({
+
+        AllUserInfo: [],
+        
       })
     })
   }
@@ -71,11 +85,11 @@ export default class ReadStoryScreen extends React.Component {
 
       <View>
 
-        <Header />
-
+        <Header/>
+     
         <TextInput
 
-          placeholder='Search...'
+          placeholder='Type to Search...'
           style={styles.TextInputStyle}
 
           onChangeText={(text) => {
@@ -83,14 +97,15 @@ export default class ReadStoryScreen extends React.Component {
           }} />
 
 
-        <TouchableOpacity style={{ backgroundColor: 'white', borderWidth: 5, width: '20%' }}><Text style={{ alignSelf: 'center', fontWeight: 'bold' }} onPress={() => {
+        <TouchableOpacity style={{ marginTop: -24,marginLeft: 305,backgroundColor: 'white', borderWidth: 2, width: '20%' , alignSelf: 'center' }}><Text style={{ alignSelf: 'center', fontWeight: 'bold' }} onPress={() => {
 
-          //console.log("Filter!")
           this.setState({
             AllUserInfo: []
           })
           this.SearchFilterFunction(this.state.SearchedItem)
 
+          
+          
         }}>Search...</Text></TouchableOpacity>
 
 
