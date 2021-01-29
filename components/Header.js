@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 
-class Header extends React.Component {
+  class Header extends React.Component {
  render() {
   return (
 
@@ -11,7 +11,7 @@ class Header extends React.Component {
   )
  }
 }
-
+  
 const styles = StyleSheet.create({
 
  header: {
@@ -19,13 +19,14 @@ const styles = StyleSheet.create({
   fontWeight: 'bold',
   alignSelf: 'center',
   fontSize: 40,
-  marginTop: 30
+  marginTop: 10,
+  color: 'white'
  },
  
  blueBar:{
 
  backgroundColor: 'blue'
-
+ 
 
  }
 })

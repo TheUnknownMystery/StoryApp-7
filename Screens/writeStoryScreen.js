@@ -1,31 +1,18 @@
-import React from 'react';
-import { View, Text, StyleSheet, TextInput, TouchableOpacity, KeyboardAvoidingView, ToastAndroid } from 'react-native'
-import Header2 from "../components/Header2"
-import db from '../config'
-import firebase from 'firebase'
-
+import React from "react";
+import { View, Text, StyleSheet, TextInput, TouchableOpacity, KeyboardAvoidingView, ToastAndroid } from "react-native";
+import Header2 from "../components/Header2";
+import db from "../config";
 
 export default class WriteStoryScreen extends React.Component {
 
-
     submitStory = async () => {
 
-        db.collection("Author").doc("A-0001").update({
+        db.collection("UserData").add({
 
-            'authorOfStory': this.state.author
-
-        })
-
-        db.collection("Story").doc('S-0003').update({
-
-            'Story': this.state.body
-
-
-        })
-
-        db.collection("Title").doc("T-0002").update({
-
-            'TitleOfStory': this.state.title
+            'Author': this.state.author,
+            'Story': this.state.body,
+            'Title': this.state.title,
+            'UserStory': true
 
         })
     }
@@ -43,10 +30,10 @@ export default class WriteStoryScreen extends React.Component {
     }
     render() {
         return (
-
-            <KeyboardAvoidingView behavior="padding" enabled>
+           
                 <View>
-                    <Header2 />
+
+                    <Header2/>
 
                     <TextInput
 
@@ -75,9 +62,8 @@ export default class WriteStoryScreen extends React.Component {
                                 title: text
 
                             })
-                        }}
+                        }} />
 
-                    />
                     <TextInput
 
                         style={styles.textInputStyle2}
@@ -96,7 +82,7 @@ export default class WriteStoryScreen extends React.Component {
                     <TouchableOpacity style={styles.submitButton} onPress={() => {
 
                         this.submitStory()
-                        ToastAndroid.show("StorySubmitted", ToastAndroid.LONG)
+                        ToastAndroid.show("StorySubmitted...", ToastAndroid.LONG)
 
                     }}>
 
@@ -105,29 +91,33 @@ export default class WriteStoryScreen extends React.Component {
                     </TouchableOpacity>
 
                 </View>
-            </KeyboardAvoidingView>
         )
     }
 }
+
+
 const styles = StyleSheet.create({
 
     textInputStyle: {
 
-        borderWidth: 3,
+        borderWidth: 2,
         justifyContent: 'center',
-        width: '40%',
+        width: '90%',
         height: 50,
         alignSelf: 'center',
-        marginTop: 50
+        marginTop: 50,
+        alignSelf: 'center'
     },
 
     textInputStyle2: {
 
         height: 200,
-        width: '40%',
+        width: '80%',
         alignSelf: 'center',
         marginTop: 50,
-        borderWidth: 3
+        borderWidth: 2,
+        backgroundColor: 'lightgrey',
+        alignSelf: 'center'
     },
 
     SubmitButtonText: {
@@ -151,9 +141,5 @@ const styles = StyleSheet.create({
         backgroundColor: 'grey',
         alignSelf: 'center',
         marginTop: 60
-
-
-
-
     }
 })
