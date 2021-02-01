@@ -30,7 +30,7 @@ export default class ReadStoryScreen extends React.Component {
 
       Transaction.docs.map((doc) => {
 
-      this.setState({AllUserInfo: [...this.state.AllUserInfo,doc.data()]})
+        this.setState({ AllUserInfo: [...this.state.AllUserInfo, doc.data()] })
 
       })
     }
@@ -122,25 +122,25 @@ export default class ReadStoryScreen extends React.Component {
         }}>Search...</Text></TouchableOpacity>
 
 
-       
 
-            <FlatList
 
-              data={this.state.AllUserInfo}
-              renderItem={({ item }) => {
+        <FlatList
 
-                return (
-                  <View style={{ backgroundColor: 'pink', borderWidth: 2, borderColor: 'darkpink', fontWeight: 'bold', borderRadius: 10, marginTop: 20 }}>
-                    <Text style = {{fontWeight: 'bold'}}>{'Author: ' + item.Author}</Text>
-                    <Text style = {{fontWeight: 'bold'}}>{'Title: ' + item.Title}</Text>
-                    <Text style = {{fontWeight: 'bold'}}>{'Story: ' + item.Story}</Text>
-                    <Text style ={{fontWiehgt: 'bold' , color: 'white'}}>{'Date: ' + firebase.firestore.Timestamp.now().toDate()}</Text>
-                  </View>
-                )
-              }}
+          data={this.state.AllUserInfo}
+          renderItem={({ item }) => {
 
-            />
-            
+            return (
+              <View style={{ backgroundColor: 'pink', borderWidth: 2, borderColor: 'darkpink', fontWeight: 'bold', borderRadius: 10, marginTop: 20 }}>
+                <Text style={{ fontWeight: 'bold' }}>{'Author: ' + item.Author}</Text>
+                <Text style={{ fontWeight: 'bold' }}>{'Title: ' + item.Title}</Text>
+                <Text style={{ fontWeight: 'bold' }}>{'Story: ' + item.Story}</Text>
+                <Text style={{ fontWiehgt: 'bold', color: 'white' }}>{'Date: ' + firebase.firestore.Timestamp.now().toDate()}</Text>
+              </View>
+            )
+          }}
+
+        />
+
 
       </View >
     )
